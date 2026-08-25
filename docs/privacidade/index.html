@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Política de Privacidade — Alonga</title>
-<meta name="alonga-policy-version" content="privacy-v1.5-2026-08-19">
-<meta name="alonga-content-hash" content="4632e051bddc3e632ba2ffa81e1c0c2bdac53447fa87b7e91006781b434d7b03">
+<meta name="alonga-policy-version" content="privacy-v1.6-2026-08-24">
+<meta name="alonga-content-hash" content="12517a9be4468b57eef48bdd8da839e36eb8753674fb99afd9dcdbd868e812a9">
 <meta name="robots" content="index, follow">
 <style>
   :root { color-scheme: dark; }
@@ -34,10 +34,13 @@
 <section>
 <h2>Dados no seu aparelho</h2>
 <p>O Alonga foi feito para funcionar primeiro no seu aparelho. Suas respostas do quiz, preferências, progresso, sequência e lembretes ficam no armazenamento local do app (AsyncStorage).</p>
+<p>No aparelho, esses registros são gravados cifrados com uma chave AES-256 criada e guardada só nele, que nunca sai do aparelho e nunca é enviada para nós. Se essa chave for perdida (por exemplo, ao restaurar um backup), os dados cifrados deixam de ser legíveis e o app pede sua autorização antes de recomeçar.</p>
 </section>
 <section>
 <h2>Conta e sincronização</h2>
 <p>Em builds configuradas com Supabase, criamos automaticamente uma identidade remota anônima para sincronizar o app. Guardamos suas respostas do onboarding, incluindo lesões, gravidez, sexo e faixa etária, e seu histórico de prática: IDs das rotinas, datas e horários, duração e agregados de progresso. A sincronização também usa identificadores técnicos de usuário, instalação, eventos de prática e importação, e de cada gravação de respostas e configurações. Se você vincular uma conta, também guardamos seu e-mail. Esses dados mantêm sua experiência e seu plano personalizados entre sessões.</p>
+<p>Sobre a proteção desses dados na nuvem, sendo direto: o envio é protegido por TLS (a conexão é cifrada em trânsito) e os dados ficam armazenados nos servidores da Supabase, onde o acesso é restrito por conta — cada conta só consegue ler e escrever as próprias linhas, e essa regra é aplicada pelo próprio banco de dados (Row Level Security), não apenas pelo app. Não usamos criptografia de ponta a ponta: o conteúdo não fica cifrado com uma chave que só você tem, então a Supabase, como operadora, tem capacidade técnica de acessar o armazenamento. Não prometemos mais do que isso.</p>
+<p>Os dados de saúde (áreas do corpo e lesões) só sobem para a nuvem com o seu consentimento específico, e o servidor recusa a gravação quando esse consentimento não está registrado. Ao revogar em Ajustes, apagamos essas respostas no aparelho e o servidor apaga as linhas correspondentes na mesma operação em que registra a revogação; se você estiver sem conexão, a revogação vale no aparelho na hora e a exclusão no servidor acontece assim que a conexão voltar — a tela mostra qual dos dois estados está valendo.</p>
 </section>
 <section>
 <h2>Assinaturas</h2>
@@ -54,8 +57,10 @@
 <p>Ainda no site, usamos o pixel da Meta Platforms, Inc. para medir o resultado dos nossos anúncios e alcançar públicos semelhantes. A base legal da medição do site e da gravação de sessão é o legítimo interesse (art. 10 da LGPD) em entender e melhorar a nossa comunicação. Você pode se opor a esse tratamento escrevendo para o contato desta política, e bloqueadores de rastreadores no navegador também impedem essa coleta. As gravações e os eventos do site são apagados automaticamente pela Mixpanel conforme o período de retenção do nosso plano, e o e-mail da lista de espera é apagado quando você se descadastra.</p>
 </section>
 <section>
-<h2>Analytics de uso</h2>
-<p>Para entender e melhorar o Alonga, registramos eventos de uso do app (por exemplo: telas do onboarding visitadas, rotinas concluídas, exibição da tela de assinatura e falhas de inicialização). Esses eventos não incluem dados de saúde, texto livre nem seu e-mail, mas são associados a um identificador único da sua conta — por isso são dados pessoais pseudonimizados, e não dados anônimos. Eles são processados pela Mixpanel, Inc., que pode tratá-los em servidores nos Estados Unidos ou na União Europeia. A base legal é o legítimo interesse (art. 10 da LGPD) em medir e melhorar o produto, e você pode se opor a esse tratamento e desativá-lo a qualquer momento em Ajustes → Analytics de uso (art. 18, §2º). Ao desativar, nenhum evento é enviado.</p>
+<h2>Dados de uso</h2>
+<p>Para entender e melhorar o Alonga, registramos eventos de uso do app (por exemplo: telas do onboarding visitadas, rotinas concluídas, exibição da tela de assinatura e falhas de inicialização). Esses eventos não incluem dados de saúde, texto livre nem seu e-mail, mas são associados a um identificador único da sua conta — por isso são dados pessoais pseudonimizados, e não dados anônimos. Eles são processados pela Mixpanel, Inc., que pode tratá-los em servidores nos Estados Unidos ou na União Europeia.</p>
+<p>A base legal é o seu consentimento (art. 7º, I da LGPD). Pedimos essa escolha durante o onboarding, logo depois da confirmação de idade, com as opções &quot;Aceitar&quot; e &quot;Agora não&quot; no mesmo peso; enquanto você não aceitar, nenhum evento de uso sai do aparelho, e eventos gerados antes da sua escolha são descartados, não guardados para envio posterior. Você pode retirar o consentimento a qualquer momento em Ajustes › Dados de uso, e a partir daí nenhum evento novo é enviado.</p>
+<p>Os eventos já enviados são apagados automaticamente pela Mixpanel conforme o período de retenção do nosso plano. Ao excluir sua conta, além de apagar seus dados nos nossos servidores, pedimos formalmente à Mixpanel a eliminação dos eventos ligados aos seus identificadores.</p>
 </section>
 <section>
 <h2>Seus direitos pela LGPD</h2>
@@ -67,14 +72,14 @@
 </section>
 <section>
 <h2>Retenção, exclusão e proteção</h2>
-<p>Ao apagar os dados locais do app nas configurações do seu aparelho, são removidos os dados guardados nele, como preferências, respostas, progresso, lembretes e sessões locais. Ao excluir sua conta pelo app, removemos a identidade e as réplicas vinculadas no Supabase, incluindo onboarding, histórico de prática e progresso remoto. Contas remotas anônimas são apagadas automaticamente quando passam mais de 90 dias sem login e sem atividade registrada no servidor, junto com suas réplicas vinculadas. Registros de compra e assinatura permanecem com a loja em que você assinou e com RevenueCat conforme as políticas e obrigações deles. Cada provedor trata os dados apenas para prestar o serviço contratado, conforme os termos de tratamento de dados que publica.</p>
+<p>Ao apagar os dados locais do app nas configurações do seu aparelho, são removidos os dados guardados nele, como preferências, respostas, progresso, lembretes e sessões locais. Ao excluir sua conta pelo app, removemos a identidade e as réplicas vinculadas no Supabase, incluindo onboarding, histórico de prática e progresso remoto. Contas remotas anônimas são apagadas automaticamente quando passam mais de 90 dias sem login e sem atividade registrada no servidor, junto com suas réplicas vinculadas. Depois de concluir a exclusão, guardamos por até 180 dias apenas um comprovante técnico de que ela aconteceu — o identificador interno da conta excluída e a data —, para que o app consiga confirmar a exclusão em um aparelho que ficou offline e para que possamos responder a você sobre o pedido. Passado esse prazo, uma rotina automática apaga esse identificador e deixa no lugar um código embaralhado com uma chave secreta, do qual não é possível voltar ao identificador original; junto com ele fica apenas uma contagem mensal de exclusões, que não identifica ninguém. Registros de compra e assinatura permanecem com a loja em que você assinou e com RevenueCat conforme as políticas e obrigações deles. Cada provedor trata os dados apenas para prestar o serviço contratado, conforme os termos de tratamento de dados que publica.</p>
 </section>
 <section>
 <h2>Atualizações desta política</h2>
 <p>Podemos atualizar esta política quando o app ou a legislação mudarem. A versão vigente estará sempre nesta tela.</p>
 </section>
 <p class="meta">
-  Versão privacy-v1.5-2026-08-19 · vigente desde 2026-08-19<br>
+  Versão privacy-v1.6-2026-08-24 · vigente desde 2026-08-24<br>
   Documento relacionado: <a href="https://appsforhustler.github.io/alonga-legal/termos/">Termos de Uso</a><br>
   Encarregado (DPO): <a href="mailto:suporte@appsforhustler.lat">suporte@appsforhustler.lat</a>
 </p>
